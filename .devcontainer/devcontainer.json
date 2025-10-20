@@ -1,0 +1,61 @@
+{
+  "name": "Combined Weather & Sensource API",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+  "remoteUser": "vscode",
+  "overrideCommand": true,
+  
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/powershell:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/va-h/devcontainers-features/uv:1": {
+      "shellautocompletion": true,
+      "version": "latest"
+    }
+  },
+  
+  "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-vscode.powershell",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "charliermarsh.ruff",
+        "ms-vscode-remote.remote-wsl",
+        "Postman.postman-for-vscode",
+        "RandomFractalsInc.duckdb-sql-tools",
+        "mtxr.sqltools"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black"
+      }
+    }
+  },
+  
+  "postCreateCommand": "pip install --upgrade pip && pip install requests python-dotenv pandas numpy duckdb pyarrow dlt[duckdb] sqlalchemy ruff jupyter ipykernel dbt-core",
+  
+  "forwardPorts": [8000, 3000],
+  
+  "remoteEnv": {
+    "TOMORROW_API_KEY": "${localEnv:TOMORROW_API_KEY}"
+  },
+  
+  "mounts": [
+    "source=${localEnv:HOME}/.tomorrow_api,target=/home/vscode/.tomorrow_api,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind"
+  ]
+}
