@@ -1,0 +1,17 @@
+[project]
+name = "Gatecountexample"
+version = "0.1.0"
+description = "example script demonstrating Sensource Vea access."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "duckdb>=1.4.1",
+    "numpy>=2.2.6",
+    "pandas>=2.3.3",
+    "pyodbc>=5.2.0",
+    "python-dotenv>=1.1.1",
+    "pywin32>=311",
+    "requests>=2.32.5",
+    "rich>=14.2.0",
+    "sqlalchemy>=2.0.44",
+]

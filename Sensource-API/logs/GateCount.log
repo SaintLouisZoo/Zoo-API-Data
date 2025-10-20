@@ -1,0 +1,132 @@
+[2025-10-10 20:49:27] [INFO] Sending gate count data to DuckDB
+[2025-10-10 20:49:28] [INFO] Gate count data written to DuckDB.
+[2025-10-10 20:49:28] [INFO] Success
+[2025-10-13 14:22:35] [INFO] Sending gate count data to DuckDB
+[2025-10-13 14:22:36] [INFO] Gate count data written to DuckDB.
+[2025-10-13 14:22:36] [INFO] Success
+[2025-10-13 14:39:33] [INFO] Sending gate count data to DuckDB
+[2025-10-13 14:39:33] [WARNING] Failure! 'results'
+[2025-10-13 16:47:57] [INFO] Sending gate count data to DuckDB
+[2025-10-13 16:47:58] [WARNING] Failure! 'results'
+[2025-10-13 16:49:25] [INFO] Sending gate count data to DuckDB
+[2025-10-13 16:49:26] [WARNING] Failure! "None of [Index(['recordDate_fifteenminute_1', 'name', 'sumins', 'sumouts'], dtype='object')] are in the [columns]"
+[2025-10-13 17:52:46] [INFO] Sending gate count data to DuckDB
+[2025-10-13 17:52:46] [WARNING] Failure! "None of [Index(['recordDate_fifteenminute_1', 'name', 'sumins', 'sumouts'], dtype='object')] are in the [columns]"
+[2025-10-13 17:54:51] [INFO] Sending gate count data to DuckDB
+[2025-10-13 17:54:51] [WARNING] Failure! 'results'
+[2025-10-13 17:55:43] [INFO] Sending gate count data to DuckDB
+[2025-10-13 17:55:43] [INFO] Response keys: dict_keys(['err'])
+[2025-10-13 17:55:43] [INFO] Full response: {'err': 'An error has occured. Please contact SenSource support.'}
+[2025-10-13 17:55:43] [WARNING] Failure! 'results'
+[2025-10-13 17:58:45] [INFO] Sending gate count data to DuckDB
+[2025-10-13 17:58:45] [INFO] Fetching data from 01-01-2025 to 10-13-2025
+[2025-10-13 17:58:45] [INFO] Retrieved 0 raw records from API
+[2025-10-13 17:58:45] [WARNING] Failure! list index out of range
+[2025-10-13 20:55:17] [INFO] Sending gate count data to DuckDB
+[2025-10-13 20:55:17] [INFO] Fetching data from 01-01-2025 to 10-13-2025
+[2025-10-13 20:55:17] [INFO] Retrieved 0 raw records from API
+[2025-10-13 20:55:17] [WARNING] Failure! list index out of range
+[2025-10-13 20:55:40] [INFO] Sending gate count data to DuckDB
+[2025-10-13 20:55:40] [INFO] Fetching data from 01-01-2025 to 10-13-2025
+[2025-10-13 20:55:40] [WARNING] No results returned. Response keys: dict_keys(['messages', 'results'])
+[2025-10-13 20:55:40] [WARNING] Full response: {'messages': [], 'results': []}
+[2025-10-13 20:55:40] [INFO] Success
+[2025-10-13 21:01:27] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:01:27] [INFO] Fetching data from 01-01-2025 to 01-31-2025
+[2025-10-13 21:01:27] [WARNING] No data returned for 01-01-2025 to 01-31-2025
+[2025-10-13 21:01:27] [INFO] Fetching data from 02-01-2025 to 02-28-2025
+[2025-10-13 21:01:27] [WARNING] No data returned for 02-01-2025 to 02-28-2025
+[2025-10-13 21:01:27] [INFO] Fetching data from 03-01-2025 to 03-31-2025
+[2025-10-13 21:01:27] [WARNING] No data returned for 03-01-2025 to 03-31-2025
+[2025-10-13 21:01:27] [INFO] Fetching data from 04-01-2025 to 04-30-2025
+[2025-10-13 21:01:27] [WARNING] No data returned for 04-01-2025 to 04-30-2025
+[2025-10-13 21:01:27] [INFO] Fetching data from 05-01-2025 to 05-31-2025
+[2025-10-13 21:01:27] [WARNING] No data returned for 05-01-2025 to 05-31-2025
+[2025-10-13 21:01:27] [INFO] Fetching data from 06-01-2025 to 06-30-2025
+[2025-10-13 21:01:28] [WARNING] No data returned for 06-01-2025 to 06-30-2025
+[2025-10-13 21:01:28] [INFO] Fetching data from 07-01-2025 to 07-31-2025
+[2025-10-13 21:01:28] [WARNING] No data returned for 07-01-2025 to 07-31-2025
+[2025-10-13 21:01:28] [INFO] Fetching data from 08-01-2025 to 08-31-2025
+[2025-10-13 21:01:29] [WARNING] No data returned for 08-01-2025 to 08-31-2025
+[2025-10-13 21:01:29] [INFO] Fetching data from 09-01-2025 to 09-30-2025
+[2025-10-13 21:01:30] [WARNING] No data returned for 09-01-2025 to 09-30-2025
+[2025-10-13 21:01:30] [INFO] Fetching data from 10-01-2025 to 10-13-2025
+[2025-10-13 21:01:31] [WARNING] No data returned for 10-01-2025 to 10-13-2025
+[2025-10-13 21:01:31] [WARNING] No data retrieved for entire YTD period
+[2025-10-13 21:01:31] [INFO] Success
+[2025-10-13 21:08:24] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:08:24] [INFO] Fetching data from 12-31-2024 to 01-31-2025
+[2025-10-13 21:08:37] [INFO] Retrieved 8370 records for this period
+[2025-10-13 21:08:37] [INFO] Fetching data from 01-31-2025 to 02-28-2025
+[2025-10-13 21:08:45] [INFO] Retrieved 7560 records for this period
+[2025-10-13 21:08:45] [INFO] Fetching data from 02-28-2025 to 03-31-2025
+[2025-10-13 21:08:52] [INFO] Retrieved 8370 records for this period
+[2025-10-13 21:08:52] [INFO] Fetching data from 03-31-2025 to 04-30-2025
+[2025-10-13 21:08:59] [INFO] Retrieved 8099 records for this period
+[2025-10-13 21:08:59] [INFO] Fetching data from 04-30-2025 to 05-31-2025
+[2025-10-13 21:09:10] [INFO] Retrieved 8370 records for this period
+[2025-10-13 21:09:10] [INFO] Fetching data from 05-31-2025 to 06-30-2025
+[2025-10-13 21:09:26] [INFO] Retrieved 8100 records for this period
+[2025-10-13 21:09:26] [INFO] Fetching data from 06-30-2025 to 07-31-2025
+[2025-10-13 21:09:34] [INFO] Retrieved 8031 records for this period
+[2025-10-13 21:09:34] [INFO] Fetching data from 07-31-2025 to 08-31-2025
+[2025-10-13 21:09:41] [INFO] Retrieved 8370 records for this period
+[2025-10-13 21:09:41] [INFO] Fetching data from 08-31-2025 to 09-30-2025
+[2025-10-13 21:09:48] [INFO] Retrieved 8100 records for this period
+[2025-10-13 21:09:48] [INFO] Fetching data from 09-30-2025 to 10-13-2025
+[2025-10-13 21:09:51] [INFO] Retrieved 3510 records for this period
+[2025-10-13 21:09:51] [INFO] Total retrieved: 76880 raw records from API
+[2025-10-13 21:09:51] [INFO] After filtering: 42240 non-zero records
+[2025-10-13 21:09:51] [INFO] Final dataset: 22386 records after grouping
+[2025-10-13 21:09:52] [WARNING] Failure! Binder Error: table GateCount has 3 columns but 4 values were supplied
+[2025-10-13 21:10:25] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:11:17] [WARNING] Failure! Binder Error: table GateCount has 3 columns but 4 values were supplied
+[2025-10-13 21:14:00] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:15:54] [INFO] Gate count data written to DuckDB.
+[2025-10-13 21:15:54] [INFO] Success
+[2025-10-13 21:17:25] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:17:25] [WARNING] Failure! "None of [Index(['recordDate_fifteenminute_1', 'name', 'sumins', 'sumouts'], dtype='object')] are in the [columns]"
+[2025-10-13 21:17:52] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:24:00] [INFO] Sending gate count data to DuckDB
+[2025-10-13 21:24:00] [INFO] Gate count data written to DuckDB.
+[2025-10-13 21:24:00] [INFO] Success
+[2025-10-14 16:58:11] [INFO] Sending gate count data to DuckDB
+[2025-10-14 16:58:12] [INFO] Gate count data written to DuckDB.
+[2025-10-14 16:58:12] [INFO] Success
+[2025-10-14 16:58:20] [INFO] Sending gate count data to DuckDB
+[2025-10-14 16:59:23] [INFO] Gate count data written to DuckDB.
+[2025-10-14 16:59:23] [INFO] Success
+[2025-10-14 17:02:51] [INFO] Sending gate count data to DuckDB
+[2025-10-14 17:04:22] [INFO] Gate count data written to DuckDB.
+[2025-10-14 17:04:22] [INFO] Success
+[2025-10-14 17:47:34] [INFO] Sending gate count data to DuckDB
+[2025-10-14 17:48:41] [INFO] Gate count data written to DuckDB.
+[2025-10-14 17:48:41] [INFO] Success
+[2025-10-14 20:22:54] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:24:05] [WARNING] Failure! Already tz-aware, use tz_convert to convert.
+[2025-10-14 20:30:39] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:32:11] [WARNING] Failure! Already tz-aware, use tz_convert to convert.
+[2025-10-14 20:32:52] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:34:20] [WARNING] Failure! 'American/Chicago'
+[2025-10-14 20:35:54] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:37:03] [WARNING] Failure! 'American/Chicago'
+[2025-10-14 20:39:28] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:40:45] [INFO] Gate count data written to DuckDB.
+[2025-10-14 20:40:45] [INFO] Success
+[2025-10-14 20:48:04] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:50:12] [INFO] Gate count data written to DuckDB.
+[2025-10-14 20:50:12] [INFO] Success
+[2025-10-14 20:56:00] [INFO] Sending gate count data to DuckDB
+[2025-10-14 20:57:10] [INFO] Before conversion - First timestamp: 2024-12-31 14:45:00+00:00
+[2025-10-14 20:57:10] [INFO] After tz_convert - First timestamp: 2024-12-31 08:45:00-06:00
+[2025-10-14 20:57:10] [INFO] Gate count data written to DuckDB.
+[2025-10-14 20:57:10] [INFO] Success
+[2025-10-14 21:02:26] [INFO] Sending gate count data to DuckDB
+[2025-10-14 21:03:37] [INFO] Gate count data written to DuckDB.
+[2025-10-14 21:03:37] [INFO] Success
+[2025-10-15 14:46:50] [INFO] Sending gate count data to DuckDB
+[2025-10-15 14:47:53] [INFO] Gate count data written to DuckDB.
+[2025-10-15 14:47:54] [INFO] Success
+[2025-10-15 14:54:56] [INFO] Sending gate count data to DuckDB
+[2025-10-15 14:54:57] [INFO] Gate count data written to DuckDB.
+[2025-10-15 14:54:57] [INFO] Success
