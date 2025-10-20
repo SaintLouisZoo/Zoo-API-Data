@@ -1,0 +1,8 @@
+.env
+*.Duckdb
+*.Duckdb.wal
+
+.dlt/
+
+__pychache__/
+*.pyc
