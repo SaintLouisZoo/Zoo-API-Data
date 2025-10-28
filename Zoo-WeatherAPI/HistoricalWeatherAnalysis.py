@@ -27,7 +27,6 @@ def weather_realtime():
         
     }
     params = {
-        #"apikey": API_KEY,
         "location": LOCATION,
         "units": "imperial"
     }
@@ -40,8 +39,17 @@ def weather_realtime():
     data['data']['location'] = LOCATION
     yield data['data']
 
-pipeline = dlt.pipeline(
-    pipeline_name="tomorrow_zoo_weather",
+# Pipeline for weather_realtime table
+pipeline_realtime = dlt.pipeline(
+    pipeline_name="tomorrow_zoo_weather_realtime",
+    destination="duckdb",
+    dataset_name="weather",
+    dev_mode=False, 
+)
+
+# Pipeline for zoo_weather_scores table
+pipeline_scores = dlt.pipeline(
+    pipeline_name="tomorrow_zoo_weather_scores",
     destination="duckdb",
     dataset_name="weather",
     dev_mode=False, 
@@ -162,7 +170,7 @@ WITH weather_scores AS (
       ELSE 0
     END AS comfortable_cool_bonus
     
-  FROM weather.weather_realtime
+  FROM realtime_db.weather.weather_realtime
 )
 
 SELECT
@@ -204,16 +212,38 @@ ORDER BY time DESC;
 
 if __name__ == "__main__":
     try:
-        info = pipeline.run(weather_realtime(), table_name='weather_realtime')
+        # Load realtime data to first database
+        info = pipeline_realtime.run(weather_realtime(), table_name='weather_realtime')
         print(f"Loaded realtime: {info}")
+        print(f"Realtime database: {pipeline_realtime.pipeline_name}.duckdb")
        
-        conn = duckdb.connect(f"{pipeline.pipeline_name}.duckdb")
-        conn.execute(ZOO_WEATHER_SCORE_QUERY)
-        conn.close()
-        print("Created zoo_weather_scores table")
+        # Open connections
+        conn_realtime = duckdb.connect(f"{pipeline_realtime.pipeline_name}.duckdb", read_only=True)
+        conn_scores = duckdb.connect(f"{pipeline_scores.pipeline_name}.duckdb")
         
-        print(f"\nData loaded to: {pipeline.dataset_name}")
-        print(f"Database location: {pipeline.pipeline_name}.duckdb")
+        # Create the weather schema in the scores database
+        conn_scores.execute("CREATE SCHEMA IF NOT EXISTS weather")
+        
+        # Attach the realtime database to read from it
+        conn_scores.execute(f"ATTACH '{pipeline_realtime.pipeline_name}.duckdb' AS realtime_db")
+        
+        # Execute the query (already modified to use realtime_db in ZOO_WEATHER_SCORE_QUERY)
+        conn_scores.execute(ZOO_WEATHER_SCORE_QUERY)
+        
+        # Verify the data was loaded
+        result = conn_scores.execute("SELECT COUNT(*) FROM weather.zoo_weather_scores").fetchone()
+        print(f"Rows inserted into zoo_weather_scores: {result[0]}")
+        
+        conn_scores.close()
+        conn_realtime.close()
+        
+        print("Created zoo_weather_scores table")
+        print(f"Scores database: {pipeline_scores.pipeline_name}.duckdb")
+        
+        print(f"\nTwo separate databases created:")
+        print(f"1. {pipeline_realtime.pipeline_name}.duckdb - contains weather_realtime table")
+        print(f"2. {pipeline_scores.pipeline_name}.duckdb - contains zoo_weather_scores table")
+        
     except Exception as e:
         print(f"Error occurred: {e}")
         import traceback
