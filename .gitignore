@@ -1,6 +1,6 @@
 .env
-*.Duckdb
-*.Duckdb.wal
+.Duckdb
+.Duckdb.wal
 
 .dlt/
 
