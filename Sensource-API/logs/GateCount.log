@@ -130,3 +130,40 @@
 [2025-10-15 14:54:56] [INFO] Sending gate count data to DuckDB
 [2025-10-15 14:54:57] [INFO] Gate count data written to DuckDB.
 [2025-10-15 14:54:57] [INFO] Success
+[2025-10-28 18:40:27] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:40:27] [INFO] Gate count data written to DuckDB.
+[2025-10-28 18:40:27] [INFO] Success
+[2025-10-28 18:42:50] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:42:51] [INFO] Gate count data written to DuckDB.
+[2025-10-28 18:42:51] [INFO] Success
+[2025-10-28 18:43:46] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:43:46] [WARNING] Failure! 'results'
+[2025-10-28 18:44:51] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:44:51] [WARNING] Failure! 'results'
+[2025-10-28 18:44:59] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:45:01] [INFO] Gate count data written to DuckDB.
+[2025-10-28 18:45:01] [INFO] Success
+[2025-10-28 18:49:00] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:50:30] [INFO] Gate count data written to DuckDB.
+[2025-10-28 18:50:30] [INFO] Success
+[2025-10-28 18:54:27] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:54:27] [WARNING] Failure! 'results'
+[2025-10-28 18:57:29] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:57:29] [WARNING] Failure! name 'startDate' is not defined
+[2025-10-28 18:58:22] [INFO] Sending gate count data to DuckDB
+[2025-10-28 18:58:23] [INFO] Gate count data written to DuckDB.
+[2025-10-28 18:58:23] [INFO] Success
+[2025-10-28 19:13:59] [INFO] Sending gate count data to DuckDB
+[2025-10-28 19:15:05] [INFO] Gate count data written to DuckDB.
+[2025-10-28 19:15:05] [INFO] Success
+[2025-10-28 19:17:46] [INFO] Sending gate count data to DuckDB
+[2025-10-28 19:17:46] [INFO] Gate count data written to DuckDB.
+[2025-10-28 19:17:46] [INFO] Success
+[2025-10-28 19:21:05] [INFO] Sending gate count data to DuckDB
+[2025-10-28 19:21:05] [WARNING] Failure! IO Error: Cannot open file "/workspaces/Zoo-API-Data/Sensource-API/Sensource-API/data/ZooData.duckdb": No such file or directory
+[2025-10-28 19:21:24] [INFO] Sending gate count data to DuckDB
+[2025-10-28 19:21:24] [INFO] Gate count data written to DuckDB.
+[2025-10-28 19:21:24] [INFO] Success
+[2025-10-28 19:24:10] [INFO] Sending gate count data to DuckDB
+[2025-10-28 19:24:11] [INFO] Gate count data written to DuckDB.
+[2025-10-28 19:24:11] [INFO] Success

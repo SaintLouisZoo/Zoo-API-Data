@@ -15,7 +15,7 @@ if not API_KEY:
     raise ValueError("API Key not found")
 
 @dlt.resource(
-    write_disposition="append",
+    write_disposition="replace",
     primary_key="time"
 )
 def weather_realtime():
