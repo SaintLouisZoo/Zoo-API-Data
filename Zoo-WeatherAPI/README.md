@@ -19,3 +19,6 @@ To refresh the weather data you will need to start a new codespace.
 Test.py outputs the schema of the table.  
 HistoricalWeatherAnalysis.py calls tomorrow.io API for real time weather data.  
 Weather_query outputs the HistoricalWeatherAnalysis.py data to the terminal output to view data without needing to connect to duckdb.
+
+
+When updating the data, simply rightclick on "tomrrow_zoo_weather.duckdb" and select download. Click yes if prompted to replace an exising file. 

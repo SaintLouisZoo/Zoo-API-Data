@@ -2,7 +2,7 @@ import duckdb
 import os
 
 # Connect to the database
-db_path = os.path.join('.', 'data', 'ZooData.duckdb')
+db_path = os.path.join('Sensource-API', 'data', 'ZooData.duckdb')
 con = duckdb.connect(database=db_path, read_only=True)
 
 # Query all gate count data

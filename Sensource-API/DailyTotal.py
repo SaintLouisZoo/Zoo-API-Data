@@ -41,9 +41,9 @@ class GateCountFetcher:
             "accept": "application/json",
             "Authorization": f"Bearer {self.api_token}"
         }
-        relativeDate = "custom"
-        startDate = (datetime.strptime(date, '%m-%d-%Y') - timedelta(days=1)).strftime('%m-%d-%Y')
-        endDate = (datetime.strptime(date, '%m-%d-%Y')).strftime('%m-%d-%Y')
+        relativeDate = "today"
+        #startDate = (datetime.strptime(date, '%m-%d-%Y') - timedelta(days=1)).strftime('%m-%d-%Y') 
+        #endDate = (datetime.strptime(date, '%m-%d-%Y')).strftime('%m-%d-%Y')
         dateGroupings = "day"
         entityType = "sensor"
         excludeClosedHours = "true"
@@ -51,8 +51,8 @@ class GateCountFetcher:
         
         # Ref: https://vea.sensourceinc.com/api-docs/
         url = (
-            f"https://vea.sensourceinc.com/api/data/traffic?relativeDate={relativeDate}&startDate={startDate}"
-            f"&endDate={endDate}&dateGroupings={dateGroupings}&entityType={entityType}"
+            f"https://vea.sensourceinc.com/api/data/traffic?relativeDate={relativeDate}"
+            f"&dateGroupings={dateGroupings}&entityType={entityType}"
             f"&excludeClosedHours={excludeClosedHours}&metrics={metrics}"
         )
         response = requests.get(url, headers=headers).json()
@@ -69,7 +69,7 @@ class GateCountFetcher:
 
     def write_to_db(self, df):
         con = duckdb.connect(database=os.path.join(os.path.dirname(__file__), '.', 'data', 'ZooData.duckdb'))
-        con.execute("CREATE TABLE IF NOT EXISTS GateCount (Date DATE, Gate VARCHAR, GateCount INTEGER);")
+        con.execute("CREATE OR REPLACE TABLE GateCount (Date DATE, Gate VARCHAR, GateCount INTEGER);")
         con.execute("INSERT INTO GateCount SELECT * FROM df;")
         logger.info("Gate count data written to DuckDB.")
 
