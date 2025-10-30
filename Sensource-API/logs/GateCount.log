@@ -167,3 +167,11 @@
 [2025-10-28 19:24:10] [INFO] Sending gate count data to DuckDB
 [2025-10-28 19:24:11] [INFO] Gate count data written to DuckDB.
 [2025-10-28 19:24:11] [INFO] Success
+[2025-10-30 15:10:25] [INFO] Sending gate count data to DuckDB
+[2025-10-30 15:10:25] [WARNING] Failure! Expecting value: line 1 column 1 (char 0)
+[2025-10-30 15:11:30] [INFO] Sending gate count data to DuckDB
+[2025-10-30 15:11:31] [INFO] Gate count data written to DuckDB.
+[2025-10-30 15:11:31] [INFO] Success
+[2025-10-30 15:11:38] [INFO] Sending gate count data to DuckDB
+[2025-10-30 15:13:09] [INFO] Gate count data written to DuckDB.
+[2025-10-30 15:13:09] [INFO] Success

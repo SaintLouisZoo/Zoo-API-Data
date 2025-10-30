@@ -70,83 +70,108 @@ WITH weather_scores AS (
     
     100.0 AS base_score,
     
+    -- MORE PUNISHING TEMPERATURE PENALTIES
     CASE
-      WHEN values__temperature < 32 THEN -50
-      WHEN values__temperature < 40 THEN -40
-      WHEN values__temperature < 50 THEN (50 - values__temperature) * -2.5
-      WHEN values__temperature < 60 THEN (60 - values__temperature) * -1.5
+      WHEN values__temperature < 20 THEN -80
+      WHEN values__temperature < 32 THEN -70
+      WHEN values__temperature < 40 THEN -55
+      WHEN values__temperature < 50 THEN (50 - values__temperature) * -4.0
+      WHEN values__temperature < 60 THEN (60 - values__temperature) * -2.5
       WHEN values__temperature BETWEEN 60 AND 72 THEN 0
-      WHEN values__temperature <= 78 THEN (values__temperature - 72) * -1.0
-      WHEN values__temperature <= 85 THEN -6 + (values__temperature - 78) * -2.0
-      WHEN values__temperature <= 92 THEN -20 + (values__temperature - 85) * -3.0
-      ELSE -41 + (values__temperature - 92) * -4.0
+      WHEN values__temperature <= 78 THEN (values__temperature - 72) * -1.5
+      WHEN values__temperature <= 85 THEN -9 + (values__temperature - 78) * -3.0
+      WHEN values__temperature <= 92 THEN -30 + (values__temperature - 85) * -4.5
+      WHEN values__temperature <= 100 THEN -61.5 + (values__temperature - 92) * -5.5
+      ELSE -105.5 + (values__temperature - 100) * -7.0
     END AS temp_penalty,
     
+    -- MORE PUNISHING HUMIDITY PENALTIES
     CASE
-      WHEN values__temperature > 80 AND values__humidity > 80 THEN -15
-      WHEN values__temperature > 80 AND values__humidity > 70 THEN -10
-      WHEN values__temperature > 80 AND values__humidity > 60 THEN -5
-      WHEN values__temperature < 50 AND values__humidity > 70 THEN -5
-      WHEN values__humidity < 20 THEN -8
-      WHEN values__humidity < 30 THEN -4
+      WHEN values__temperature > 90 AND values__humidity > 80 THEN -30
+      WHEN values__temperature > 90 AND values__humidity > 70 THEN -22
+      WHEN values__temperature > 90 AND values__humidity > 60 THEN -15
+      WHEN values__temperature > 80 AND values__humidity > 80 THEN -25
+      WHEN values__temperature > 80 AND values__humidity > 70 THEN -18
+      WHEN values__temperature > 80 AND values__humidity > 60 THEN -12
+      WHEN values__temperature < 40 AND values__humidity > 80 THEN -15
+      WHEN values__temperature < 40 AND values__humidity > 70 THEN -10
+      WHEN values__temperature < 50 AND values__humidity > 70 THEN -8
+      WHEN values__humidity < 15 THEN -12
+      WHEN values__humidity < 20 THEN -10
+      WHEN values__humidity < 30 THEN -6
       ELSE 0
     END AS humidity_penalty,
     
+    -- MORE PUNISHING PRECIPITATION PENALTIES
     CASE
       WHEN COALESCE(values__rain_intensity, 0) = 0 THEN 0
-      WHEN values__rain_intensity < 0.5 THEN -8
-      WHEN values__rain_intensity < 1.5 THEN -18
-      WHEN values__rain_intensity < 3 THEN -28
-      WHEN values__rain_intensity < 6 THEN -38
-      WHEN values__rain_intensity < 10 THEN -50
-      ELSE -65
+      WHEN values__rain_intensity < 0.25 THEN -12
+      WHEN values__rain_intensity < 0.5 THEN -18
+      WHEN values__rain_intensity < 1.0 THEN -28
+      WHEN values__rain_intensity < 1.5 THEN -38
+      WHEN values__rain_intensity < 3 THEN -50
+      WHEN values__rain_intensity < 6 THEN -65
+      WHEN values__rain_intensity < 10 THEN -80
+      ELSE -100
     END AS precip_penalty,
     
+    -- MORE PUNISHING WIND PENALTIES
     CASE
-      WHEN values__temperature < 50 AND COALESCE(values__wind_speed, 0) > 20 THEN -18
-      WHEN values__temperature < 50 AND values__wind_speed > 15 THEN -12
-      WHEN values__temperature < 50 AND values__wind_speed > 10 THEN -8
-      WHEN values__temperature < 50 AND values__wind_speed > 5 THEN -4
-      WHEN values__temperature < 65 AND values__wind_speed > 20 THEN -10
-      WHEN values__temperature < 65 AND values__wind_speed > 15 THEN -6
-      WHEN values__temperature < 65 AND values__wind_speed > 10 THEN -3
-      WHEN values__temperature > 85 AND values__wind_speed > 15 THEN 8
-      WHEN values__temperature > 85 AND values__wind_speed > 10 THEN 6
-      WHEN values__temperature > 85 AND values__wind_speed > 5 THEN 4
-      WHEN values__temperature > 85 AND values__wind_speed <= 5 THEN -5
-      WHEN values__temperature > 78 AND values__wind_speed > 15 THEN 5
-      WHEN values__temperature > 78 AND values__wind_speed > 10 THEN 4
-      WHEN values__temperature > 78 AND values__wind_speed > 5 THEN 2
+      WHEN values__temperature < 40 AND COALESCE(values__wind_speed, 0) > 25 THEN -30
+      WHEN values__temperature < 40 AND values__wind_speed > 20 THEN -24
+      WHEN values__temperature < 40 AND values__wind_speed > 15 THEN -18
+      WHEN values__temperature < 40 AND values__wind_speed > 10 THEN -12
+      WHEN values__temperature < 40 AND values__wind_speed > 5 THEN -8
+      WHEN values__temperature < 50 AND values__wind_speed > 20 THEN -22
+      WHEN values__temperature < 50 AND values__wind_speed > 15 THEN -16
+      WHEN values__temperature < 50 AND values__wind_speed > 10 THEN -10
+      WHEN values__temperature < 50 AND values__wind_speed > 5 THEN -6
+      WHEN values__temperature < 65 AND values__wind_speed > 20 THEN -14
+      WHEN values__temperature < 65 AND values__wind_speed > 15 THEN -10
+      WHEN values__temperature < 65 AND values__wind_speed > 10 THEN -6
+      WHEN values__temperature > 85 AND values__wind_speed > 15 THEN 10
+      WHEN values__temperature > 85 AND values__wind_speed > 10 THEN 8
+      WHEN values__temperature > 85 AND values__wind_speed > 5 THEN 5
+      WHEN values__temperature > 85 AND values__wind_speed <= 5 THEN -8
+      WHEN values__temperature > 78 AND values__wind_speed > 15 THEN 6
+      WHEN values__temperature > 78 AND values__wind_speed > 10 THEN 5
+      WHEN values__temperature > 78 AND values__wind_speed > 5 THEN 3
       ELSE 0
     END AS wind_effect,
     
+    -- MUCH MORE PUNISHING EXTREME WIND PENALTIES
     CASE
-      WHEN COALESCE(values__wind_speed, 0) > 35 THEN -25
-      WHEN values__wind_speed > 30 THEN -15
-      WHEN values__wind_speed > 25 THEN -8
+      WHEN COALESCE(values__wind_speed, 0) > 40 THEN -50
+      WHEN values__wind_speed > 35 THEN -35
+      WHEN values__wind_speed > 30 THEN -25
+      WHEN values__wind_speed > 25 THEN -15
       ELSE 0
     END AS extreme_wind_penalty,
     
+    -- MORE PUNISHING CLOUD COVER PENALTIES
     CASE
-      WHEN COALESCE(values__cloud_cover, 0) < 10 AND values__temperature > 75 THEN -12
-      WHEN values__cloud_cover < 10 AND values__temperature > 65 THEN -5
+      WHEN COALESCE(values__cloud_cover, 0) < 10 AND values__temperature > 85 THEN -18
+      WHEN values__cloud_cover < 10 AND values__temperature > 75 THEN -15
+      WHEN values__cloud_cover < 10 AND values__temperature > 65 THEN -8
       WHEN values__cloud_cover < 10 THEN 0
       WHEN values__cloud_cover BETWEEN 10 AND 29 THEN 2
       WHEN values__cloud_cover BETWEEN 30 AND 69 THEN 3
-      WHEN values__cloud_cover BETWEEN 70 AND 84 THEN -3
-      WHEN values__cloud_cover BETWEEN 85 AND 94 THEN -8
-      ELSE -12
+      WHEN values__cloud_cover BETWEEN 70 AND 84 THEN -6
+      WHEN values__cloud_cover BETWEEN 85 AND 94 THEN -15
+      ELSE -25
     END AS cloud_penalty,
     
+    -- MORE PUNISHING UV INDEX PENALTIES
     CASE
-      WHEN COALESCE(values__uv_index, 0) >= 11 THEN -15
-      WHEN values__uv_index >= 9 THEN -10
-      WHEN values__uv_index >= 7 THEN -6
-      WHEN values__uv_index >= 5 THEN -3
-      WHEN values__uv_index >= 3 THEN -1
+      WHEN COALESCE(values__uv_index, 0) >= 11 THEN -25
+      WHEN values__uv_index >= 9 THEN -18
+      WHEN values__uv_index >= 7 THEN -12
+      WHEN values__uv_index >= 5 THEN -6
+      WHEN values__uv_index >= 3 THEN -2
       ELSE 0
     END AS uv_penalty,
     
+    -- BONUSES (kept the same)
     CASE
       WHEN values__temperature BETWEEN 62 AND 70 
         AND values__humidity BETWEEN 40 AND 60 
@@ -185,25 +210,77 @@ SELECT
   CASE
     WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
          precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
-         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 90 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 95 
     THEN 'Perfect'
     WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
          precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
-         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 80 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 90 
+    THEN 'Outstanding'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 85 
     THEN 'Excellent'
     WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
          precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
-         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 70 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 80 
+    THEN 'Very Good'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 75 
     THEN 'Good'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 70 
+    THEN 'Pleasant'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 65 
+    THEN 'Acceptable'
     WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
          precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
          uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 60 
     THEN 'Fair'
     WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
          precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 55 
+    THEN 'Tolerable'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
          uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 50 
     THEN 'Mediocre'
-    ELSE 'Poor'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 45 
+    THEN 'Subpar'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 40 
+    THEN 'Poor'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 35 
+    THEN 'Bad'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 30 
+    THEN 'Very Bad'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 25 
+    THEN 'Unpleasant'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 20 
+    THEN 'Miserable'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 15 
+    THEN 'Severe'
+    WHEN GREATEST(1, LEAST(100, base_score + temp_penalty + humidity_penalty + 
+         precip_penalty + wind_effect + extreme_wind_penalty + cloud_penalty + 
+         uv_penalty + perfect_day_bonus + nice_clouds_bonus + comfortable_cool_bonus)) >= 10 
+    THEN 'Extreme'
+    ELSE 'Dangerous'
   END AS condition_rating
 
 FROM weather_scores
