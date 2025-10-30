@@ -11,4 +11,9 @@ Tomorrow.io API --><ul>
 </ul>
 <br>
 The PowerBI report is called 'Weather_InExfill_Data.pbix'
+
+---
+
+See .env.example for API token syntax.  
+Upon repo intialization, add .env file with Sensource and tomrrow.io API keys.
 </html>
