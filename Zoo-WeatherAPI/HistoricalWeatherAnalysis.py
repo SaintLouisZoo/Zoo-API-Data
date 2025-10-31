@@ -317,7 +317,7 @@ if __name__ == "__main__":
         print("Created zoo_weather_scores table")
         print(f"Scores database: {pipeline_scores.pipeline_name}.duckdb")
         
-        print(f"\nTwo separate databases created:")
+        print(f"Two separate databases created:")  
         print(f"1. {pipeline_realtime.pipeline_name}.duckdb - contains weather_realtime table")
         print(f"2. {pipeline_scores.pipeline_name}.duckdb - contains zoo_weather_scores table")
         
